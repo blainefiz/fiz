@@ -172,7 +172,7 @@ def end_read(signal, frame):
     time.sleep(1)
     RPi.GPIO.cleanup()
     rdr.cleanup()
-    ser.close()
+   # ser.close()
     sys.exit()
 
 
@@ -197,10 +197,10 @@ while run:
         ID = str(uid[0])+"," + str(uid[1])+","+str(uid[2])+","+str(uid[3])
 
         # Check Database Usingf scanned ID
-        if(Check_Database(ID))
+        if(Check_Database(ID)):
             RPi.GPIO.output(relay, RPi.GPIO.LOW)
 
         # time.sleep(5)
         # RPi.GPIO.output(relay,RPi.GPIO.HIGH)
-    if (ser.in_waiting > 5):
-        print(ser.readline())
+   # if (ser.in_waiting > 5):
+      #  print(ser.readline())
