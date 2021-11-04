@@ -28,7 +28,7 @@ def Clean_Return_String(Input_S):
 
 
 def Check_Database(ID):
-    conn = pyodbc.connect('Driver={/opt/microsoft/msodbcsql17/lib64/libmsodbcsql-17.0.so.1.1};'
+    conn = pyodbc.connect('Driver={ODBC Driver 17 for SQL Server};'
                           'server=192.168.88.252, 1433;'
                           'Database=fiz_markerspace;'
                           'UID=admin;'
