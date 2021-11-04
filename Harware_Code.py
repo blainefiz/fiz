@@ -178,7 +178,7 @@ def end_read(signal, frame):
 
 signal.signal(signal.SIGINT, end_read)
 #ser = serial.Serial(port="/dev/serial0", timeout=1, dsrdtr=0, xonxoff=0, rtscts=0, baudrate=1000000, bytesize=serial.E$
-RPi.GPIO.setmode(RPi.GPIO.BOARD))
+RPi.GPIO.setmode(RPi.GPIO.BOARD)
 RPi.GPIO.setup(relay, RPi.GPIO.OUT)
 
 print("Starting")
