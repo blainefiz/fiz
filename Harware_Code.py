@@ -29,7 +29,7 @@ def Clean_Return_String(Input_S):
 
 def Check_Database(ID):
     conn = pyodbc.connect('Driver={SQL Server};'
-                          'server=192.168.88.252, 1433;'
+                          'server=192.168.1.101, 1433;'
                           'Database=fiz_markerspace;'
                           'UID=admin;'
                           'PWD=fiz1234;')
