@@ -143,7 +143,6 @@ if ((User_Exists == True) and (User_Access_Room == True)):
 #
 # RESULT OF ALL THREE SECURITY CHECKS
 #
-
 if ((User_Exists == True) and (User_Access_Room == True) and (User_Access_Machine == True)):
     print("ALL SECURITY CHECKS PASSED, MACHINE ON")
     #
