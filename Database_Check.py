@@ -11,17 +11,20 @@ def Clean_Return_String(Input_S):
     return(Cleaned_String)
 
 # Blaine's Local test
+# Driver={SQL Server}
 # server=192.168.88.252,1433
 # UID=admin
 # fiz1234
 
 # Fiz tests
+# Driver={FreeTDS}
 # server=192.168.1.101, 1433
+# UID=admin
 # PWD=fiz4321
 
 
 conn = pyodbc.connect('Driver={FreeTDS};'
-                      'server=192.168.88.252,1433;'
+                      'server=192.168.88.252, 1433;'
                       'Database=fiz_markerspace;'
                       'UID=admin;'
                       'PWD=fiz1234;')
@@ -73,6 +76,8 @@ if (User_Exists == True):
     cursor_extract_guid.execute(
         "SELECT [user_id] FROM [User] WHERE [rfid_tag] = ?", RFID_User_Exisits_Allowed)
     GUID_Result = cursor_extract_guid.fetchall()
+
+    print(GUID_Result[0])
 
     # After the Users GUID is returned, in needs to be cleaned, so it can be used in python as a string
     User_GUID = str(GUID_Result[0])
