@@ -28,11 +28,11 @@ def Clean_Return_String(Input_S):
 
 
 def Check_Database(ID):
-    conn = pyodbc.connect(
-                          'server=192.168.1.101, 1433;'
-                          'Database=fiz_markerspace;'
-                          'UID=admin;'
-                          'PWD=fiz1234;')
+    conn = pyodbc.connect('Driver={FreeTDS};'
+                        'server=192.168.1.101, 1433;'
+                        'Database=fiz_markerspace;'
+                        'UID=admin;'
+                        'PWD=fiz4321;')
 
     # This value will be hardcoded on each pi, depending on which room the user is in and the machine they are using
     Room = "Wood Shop"
@@ -42,7 +42,7 @@ def Check_Database(ID):
     # when connected to harwdare it should look somthing like RFID_USER = scan.rfid_value, or somthing similar
     #
     RFID_User_Exisits_Allowed = ID
-    #RFID_User_Exisits_Allowed = "12345678910"
+    # RFID_User_Exisits_Allowed = "12345678910"
 
     # All three of these variables must be met for the power relay to be activated
     User_Exists = False
@@ -80,7 +80,7 @@ def Check_Database(ID):
     if (User_Exists == True):
         cursor_extract_guid = conn.cursor()
         cursor_extract_guid.execute(
-            "SELECT [user_id] FROM [User] WHERE [rfid_tag] = ?", RFID_User_Exisits_Allowed)
+            "SELECT convert(nvarchar(50), user_id) FROM [User] WHERE [rfid_tag] = ?", RFID_User_Exisits_Allowed)
         GUID_Result = cursor_extract_guid.fetchall()
 
         # After the Users GUID is returned, in needs to be cleaned, so it can be used in python as a string
@@ -177,8 +177,8 @@ def end_read(signal, frame):
 
 
 signal.signal(signal.SIGINT, end_read)
-#ser = serial.Serial(port="/dev/serial0", timeout=1, dsrdtr=0, xonxoff=0, rtscts=0, baudrate=1000000, bytesize=serial.E$
-RPi.GPIO.setmode(RPi.GPIO.BOARD)
+# ser = serial.Serial(port="/dev/serial0", timeout=1, dsrdtr=0, xonxoff=0, rtscts=0, baudrate=1000000, bytesize=serial.E$
+RPi.GPIO.setmode(RPi.GPIO.BOARD))
 RPi.GPIO.setup(relay, RPi.GPIO.OUT)
 
 print("Starting")
@@ -186,15 +186,15 @@ print(serial.VERSION)
 while run:
     # rdr.wait_for_tag()
 
-    (error, data) = rdr.request()
+    (error, data)=rdr.request()
     if not error:
         print("\nDetected Card")
 
-    (error, uid) = rdr.anticoll()
+    (error, uid)=rdr.anticoll()
     if not error:
         print("Card read UID: "+str(uid[0])+"," +
               str(uid[1])+","+str(uid[2])+","+str(uid[3]))
-        ID = str(uid[0])+"," + str(uid[1])+","+str(uid[2])+","+str(uid[3])
+        ID=str(uid[0])+"," + str(uid[1])+","+str(uid[2])+","+str(uid[3])
 
         # Check Database Usingf scanned ID
         if(Check_Database(ID)):
