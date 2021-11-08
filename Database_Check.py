@@ -27,7 +27,7 @@ conn = pyodbc.connect('Driver={FreeTDS};'
                       'server=192.168.1.101, 1433;'
                       'Database=fiz_markerspace;'
                       'UID=admin;'
-                      'PWD=fiz1234;')
+                      'PWD=fiz4321;')
 
 # This value will be hardcoded on each pi, depending on which room the user is in and the machine they are using
 Room = "Wood Shop"
