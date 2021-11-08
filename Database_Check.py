@@ -20,7 +20,7 @@ def Clean_Return_String(Input_S):
 # PWD=fiz4321
 
 
-conn = pyodbc.connect('Driver={SQL Server};'
+conn = pyodbc.connect('Driver={sqlserverdatasource};'
                       'server=192.168.88.252,1433;'
                       'Database=fiz_markerspace;'
                       'UID=admin;'
@@ -143,6 +143,7 @@ if ((User_Exists == True) and (User_Access_Room == True)):
 #
 # RESULT OF ALL THREE SECURITY CHECKS
 #
+
 if ((User_Exists == True) and (User_Access_Room == True) and (User_Access_Machine == True)):
     print("ALL SECURITY CHECKS PASSED, MACHINE ON")
     #
