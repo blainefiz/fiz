@@ -74,10 +74,8 @@ else:
 if (User_Exists == True):
     cursor_extract_guid = conn.cursor()
     cursor_extract_guid.execute(
-        "SELECT [user_id] FROM [User] WHERE [rfid_tag] = ?", RFID_User_Exisits_Allowed)
+        "SELECT convert(nvarchar(50), user_id) FROM [User] WHERE [rfid_tag] = ?", RFID_User_Exisits_Allowed)
     GUID_Result = cursor_extract_guid.fetchall()
-
-    print(GUID_Result[0])
 
     # After the Users GUID is returned, in needs to be cleaned, so it can be used in python as a string
     User_GUID = str(GUID_Result[0])
