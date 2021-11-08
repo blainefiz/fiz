@@ -20,7 +20,7 @@ def Clean_Return_String(Input_S):
 # PWD=fiz4321
 
 
-conn = pyodbc.connect('Driver={sqlserverdatasource};'
+conn = pyodbc.connect('Driver={FreeTDS};'
                       'server=192.168.88.252,1433;'
                       'Database=fiz_markerspace;'
                       'UID=admin;'
