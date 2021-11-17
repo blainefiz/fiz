@@ -35,7 +35,8 @@ Machine_Name = "Saw"
 
 # This is a value to test a user that exisits, and has the proper permissions
 # when connected to harwdare it should look somthing like RFID_USER = scan.rfid_value, or somthing similar
-RFID_User_Exisits_Allowed = "12345678910"
+#"12345678910"
+RFID_User_Exisits_Allowed = "15413722392"
 
 # All three of these variables must be met for the power relay to be activated
 User_Exists = False
