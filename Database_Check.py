@@ -10,6 +10,7 @@ def Clean_Return_String(Input_S):
         Cleaned_String = Cleaned_String.replace(Character, "")
     return(Cleaned_String)
 
+
 # Blaine's Local test
 # Driver={SQL Server}
 # server=192.168.88.252,1433
@@ -23,7 +24,7 @@ def Clean_Return_String(Input_S):
 # PWD=fiz4321
 
 
-conn = pyodbc.connect('Driver={FreeTDS};'
+conn = pyodbc.connect('Driver={SQL Server};'
                       'server=192.168.1.101, 1433;'
                       'Database=fiz_markerspace;'
                       'UID=admin;'
@@ -35,8 +36,7 @@ Machine_Name = "Saw"
 
 # This is a value to test a user that exisits, and has the proper permissions
 # when connected to harwdare it should look somthing like RFID_USER = scan.rfid_value, or somthing similar
-#"12345678910"
-RFID_User_Exisits_Allowed = "15413722392"
+RFID_User_Exisits_Allowed = "12345678910"
 
 # All three of these variables must be met for the power relay to be activated
 User_Exists = False
@@ -157,3 +157,24 @@ else:
     print("")
     print("SECURITY CHECKS FAILED, NO MACHINE ACCESS")
     print("")
+
+
+# Daniel This is the current threshold function
+# Copy and Past it into your new code
+# File "DataBase_Check.py in the One drive/Database folder"
+def Get_Current_Threshold(Machine_Name, Room_name):
+    cursor_get_threshold = conn.cursor()
+    cursor_get_threshold.execute(
+        "SELECT [current_threshold] FROM [Machine] WHERE [machine_name] = ? AND [room_name] = ?", Machine_Name, Room_name)
+    Threshold_Result = cursor_get_threshold.fetchall()
+
+    # After the threshold is returned, it needs to be cleaned, so it can be used in python as a string, then converted later
+    Threshold_Result = str(U_Level_Result[0])
+    Threshold_Result = Clean_Return_String(Threshold_Result)
+    Current_Threshold = int(Threshold_Result)
+    print("Machine Current Threshold: " + Threshold_Result)
+
+    return Current_Threshold
+
+
+Get_Current_Threshold(Machine_Name, Room)
